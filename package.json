@@ -42,5 +42,8 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.3.5"
+  },
+  "overrides": {
+    "typescript": "^5.2.2"
   }
 }
