@@ -12,7 +12,7 @@ const Header = () => {
                 </div>
                 <div className="hidden lg:flex lg:flex-1 justify-end">
                     <div className="register pr-5">
-                        <p className="font-bold text-2l relative w-max one cursor-pointer" >
+                        <p className="font-bold text-2l relative w-max one cursor-pointer">
                             <span>Register</span>
                             <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-400"></span>
                         </p>
