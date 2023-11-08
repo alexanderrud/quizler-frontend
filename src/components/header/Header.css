@@ -9,3 +9,11 @@
 .three:hover span {
     height: 100%;
 }
+
+.quizler-link {
+    @apply font-bold relative w-max one cursor-pointer
+}
+
+.quizler-link__selected {
+    @apply absolute -bottom-1 left-0 w-0 transition-all h-1
+}

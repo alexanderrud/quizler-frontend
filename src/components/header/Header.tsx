@@ -1,27 +1,28 @@
 import React from 'react';
 import './Header.css';
+import {Link} from "react-router-dom";
 
 const Header = () => {
     return (
         <div>
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-7 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
-                    <a href="#">
+                    <Link to="/">
                         <span className="text-xl font-bold">Quizler</span>
-                    </a>
+                    </Link>
                 </div>
                 <div className="hidden lg:flex lg:flex-1 justify-end">
                     <div className="register pr-5">
-                        <p className="font-bold text-2l relative w-max one cursor-pointer">
+                        <Link to="register" className="quizler-link">
                             <span>Register</span>
-                            <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-blue-400"></span>
-                        </p>
+                            <span className="quizler-link__selected bg-blue-400"></span>
+                        </Link>
                     </div>
                     <div className="login">
-                        <p className="font-bold text-2l relative w-max one cursor-pointer">
+                        <Link to="login" className="quizler-link">
                             <span>Log in</span>
-                            <span className="absolute -bottom-1 left-0 w-0 transition-all h-1 bg-yellow-400"></span>
-                        </p>
+                            <span className="quizler-link__selected bg-yellow-400"></span>
+                        </Link>
                     </div>
                 </div>
             </nav>
