@@ -22,7 +22,7 @@ const Form = (props: { isRegister: boolean }) => {
                     }
 
                     <div>
-                        <DefaultButton text="Sign In"/>
+                        <DefaultButton text={props.isRegister ? 'Sign Up' : 'Sign In'}/>
                     </div>
                 </form>
             </div>
