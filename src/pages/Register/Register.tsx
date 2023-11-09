@@ -1,6 +1,10 @@
+import Form from "../../components/form/Form";
+
 const Register = () => {
     return (
-        <div></div>
+        <div>
+            <Form isRegister={true}/>
+        </div>
     );
 };
 

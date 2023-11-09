@@ -1,7 +1,9 @@
+import Form from "../../components/form/Form";
+
 const Login = () => {
     return (
         <div>
-            <h1></h1>
+            <Form isRegister={false}/>
         </div>
     );
 };
