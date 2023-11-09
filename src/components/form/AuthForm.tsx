@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {FC} from 'react';
 import AuthInput from "../UI/input/AuthInput";
 import DefaultButton from "../UI/button/DefaultButton";
+import {AuthFormProps} from "../../types/Form/AuthFormProps";
 
-const AuthForm = (props: { isRegister: boolean }) => {
+const AuthForm: FC<AuthFormProps> = (props) => {
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="w-1/4 h-96">

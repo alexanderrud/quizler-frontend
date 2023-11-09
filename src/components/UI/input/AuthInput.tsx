@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {AuthInputProps} from "../../../types/Input/AuthInputProps";
 import './Input.css';
 
-const AuthInput = (props: { type: string, id: string, name: string }) => {
+const AuthInput: FC<AuthInputProps> = (props) => {
     return (
         <div>
             <label htmlFor={props.id} className="block text-sm font-bold mb-2">{props.name}</label>

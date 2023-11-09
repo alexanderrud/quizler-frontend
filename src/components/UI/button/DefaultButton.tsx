@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import './Button.css';
+import {DefaultButtonProps} from "../../../types/Button/DefaultButtonProps";
 
-const DefaultButton = (props: { text: string }) => {
+const DefaultButton: FC<DefaultButtonProps> = (props) => {
     return (
         <div>
             <button className="quizler-default-button">
