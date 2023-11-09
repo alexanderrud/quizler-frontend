@@ -1,9 +1,9 @@
-import Form from "../../components/form/Form";
+import AuthForm from "../../components/form/AuthForm";
 
 const Register = () => {
     return (
         <div>
-            <Form isRegister={true}/>
+            <AuthForm isRegister={true}/>
         </div>
     );
 };

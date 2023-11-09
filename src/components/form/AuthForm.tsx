@@ -2,7 +2,7 @@ import React from 'react';
 import AuthInput from "../UI/input/AuthInput";
 import DefaultButton from "../UI/button/DefaultButton";
 
-const Form = (props: { isRegister: boolean }) => {
+const AuthForm = (props: { isRegister: boolean }) => {
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="w-1/4 h-96">
@@ -30,4 +30,4 @@ const Form = (props: { isRegister: boolean }) => {
     );
 };
 
-export default Form;
+export default AuthForm;
