@@ -8,25 +8,16 @@ const Form = (props: { isRegister: boolean }) => {
             <div className="w-1/4 h-96">
                 <form action="#" className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4">
-                        <label htmlFor="email" className="block text-sm font-bold mb-2">
-                            Email
-                        </label>
-                        <AuthInput id="email" type="text"/>
+                        <AuthInput id="email" type="text" name="Email"/>
                     </div>
 
                     <div className="mb-6">
-                        <label htmlFor="password" className="block text-sm font-bold mb-2">
-                            Password
-                        </label>
-                        <AuthInput id="password" type="password"/>
+                        <AuthInput id="password" type="password" name="Password"/>
                     </div>
 
                     {props.isRegister ?
                         <div className="mb-4">
-                            <label htmlFor="repeat-password" className="block text-sm font-bold mb-2">
-                                Repeat password
-                            </label>
-                            <AuthInput id="repeat-password" type="password"/>
+                            <AuthInput id="repeat-password" type="password" name="Repeat Password"/>
                         </div> : ''
                     }
 
