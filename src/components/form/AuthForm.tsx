@@ -23,7 +23,7 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
                     }
 
                     <div>
-                        <DefaultButton text={isRegister ? 'Sign Up' : 'Sign In'}/>
+                        <DefaultButton text={isRegister ? 'Sign Up' : 'Sign In'} type="submit"/>
                     </div>
                 </form>
             </div>
