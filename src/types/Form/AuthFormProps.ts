@@ -1,3 +1,3 @@
 export type AuthFormProps = {
-    isRegister: boolean
+    isRegister: boolean,
 }
