@@ -1,12 +1,12 @@
-import React, {FC} from 'react';
+import React from 'react';
 import {AuthInputProps} from "../../../types/Input/AuthInputProps";
 import './Input.css';
 
-const AuthInput: FC<AuthInputProps> = (props) => {
+const AuthInput: React.FunctionComponent<AuthInputProps> = ({id, type, name}) => {
     return (
         <div>
-            <label htmlFor={props.id} className="block text-sm font-bold mb-2">{props.name}</label>
-            <input type={props.type} id={props.id} className="quizler-auth-input"/>
+            <label htmlFor={id} className="block text-sm font-bold mb-2">{name}</label>
+            <input type={type} id={id} className="quizler-auth-input"/>
         </div>
     );
 };

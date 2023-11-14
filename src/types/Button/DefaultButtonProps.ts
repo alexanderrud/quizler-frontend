@@ -1,3 +1,4 @@
 export type DefaultButtonProps = {
-    text: string
+    text: string,
+    type: "submit" | "button" | "reset"
 }
