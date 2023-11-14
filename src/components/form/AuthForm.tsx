@@ -1,9 +1,9 @@
-import React, {FC} from 'react';
+import React from 'react';
 import AuthInput from "../UI/input/AuthInput";
 import DefaultButton from "../UI/button/DefaultButton";
 import {AuthFormProps} from "../../types/Form/AuthFormProps";
 
-const AuthForm: FC<AuthFormProps> = (props) => {
+const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="w-1/4 h-96">
@@ -16,14 +16,14 @@ const AuthForm: FC<AuthFormProps> = (props) => {
                         <AuthInput id="password" type="password" name="Password"/>
                     </div>
 
-                    {props.isRegister ?
+                    {isRegister ?
                         <div className="mb-4">
                             <AuthInput id="repeat-password" type="password" name="Repeat Password"/>
                         </div> : ''
                     }
 
                     <div>
-                        <DefaultButton text={props.isRegister ? 'Sign Up' : 'Sign In'}/>
+                        <DefaultButton text={isRegister ? 'Sign Up' : 'Sign In'}/>
                     </div>
                 </form>
             </div>
