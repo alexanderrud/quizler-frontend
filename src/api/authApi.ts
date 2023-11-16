@@ -1,17 +1,16 @@
 import axios from "axios";
 
-import {RegisterRequestProperties} from "../types/API/Register/RegisterRequestProperties";
-import {LoginRequestProperties} from "../types/API/Login/LoginRequestProperties";
-import {LoginResponseProperties} from "../types/API/Login/LoginResponseProperties";
-import {RegisterResponseProperties} from "../types/API/Register/RegisterResponseProperties";
+import {SignUpRequestProperties} from "../types/API/SignUp/SignUpRequestProperties";
+import {SignInRequestProperties} from "../types/API/SignIn/SignInRequestProperties";
+import {SignInResponseProperties} from "../types/API/SignIn/SignInResponseProperties";
 
 const BASE_URL: string = process.env.REACT_APP_BASE_QUIZLER_URL || '';
 
-export const loginUser = async (properties: LoginRequestProperties): Promise<LoginResponseProperties> => {
+export const signInUser = async (properties: SignInRequestProperties): Promise<SignInResponseProperties> => {
     try {
-        const response = await axios.post(BASE_URL + '/api/login', properties);
+        const response = await axios.post(BASE_URL + '/api/login_check', properties);
 
-        return {responseData: response.data, status: response.status};
+        return response.data;
     } catch (error) {
         console.error('Error logging user:', error);
 
@@ -19,14 +18,5 @@ export const loginUser = async (properties: LoginRequestProperties): Promise<Log
     }
 }
 
-export const registerUser = async (properties: RegisterRequestProperties): Promise<RegisterResponseProperties> => {
-    try {
-        const response = await axios.post(BASE_URL + '/api/register', properties);
-
-        return {responseData: response.data, status: response.status};
-    } catch (error) {
-        console.error('Error logging user:', error);
-
-        throw error;
-    }
+export const registerUser = async (properties: SignUpRequestProperties) => {
 }

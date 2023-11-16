@@ -1,4 +1,4 @@
-export type LoginRequestProperties = {
+export type SignInRequestProperties = {
     username: string,
     password: string
 }

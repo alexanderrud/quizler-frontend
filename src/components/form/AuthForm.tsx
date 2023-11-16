@@ -1,12 +1,9 @@
 import React, {ChangeEvent, useState} from 'react';
-
 import AuthInput from "../UI/input/AuthInput";
 import DefaultButton from "../UI/button/DefaultButton";
+import {signInUser} from '../../api/authApi';
 
-import {loginUser, registerUser} from '../../api/authApi';
-
-import {LoginResponseProperties} from "../../types/API/Login/LoginResponseProperties";
-import {RegisterResponseProperties} from "../../types/API/Register/RegisterResponseProperties";
+import {SignUpResponseProperties} from "../../types/API/SignUp/SignUpResponseProperties";
 import {AuthFormProps} from "../../types/Form/AuthFormProps";
 
 const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
@@ -14,26 +11,27 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
 
-    function singIn(e: React.FormEvent) {
+    async function singIn(e: React.FormEvent): Promise<void> {
         e.preventDefault();
 
-        loginUser({username, password})
-            .then((response) => handleLoginResponse(response));
+        const responseData = await signInUser({username, password});
+        const token = responseData.token;
+
+        if (token !== null && token !== '') {
+            return handleSuccessSignIn(responseData.token);
+        }
+
+        return;
+    }
+
+    function handleSuccessSignIn(token: string) {
+
     }
 
     function signUp(e: React.FormEvent) {
-        e.preventDefault();
-
-        registerUser({username, password, repeatPassword})
-            .then((response) => handleSignUpResponse(response));
     }
 
-    function handleLoginResponse(response: LoginResponseProperties) {
-        console.log(response);
-    }
-
-    function handleSignUpResponse(response: RegisterResponseProperties) {
-        console.log(response);
+    function handleSignUpResponse(response: SignUpResponseProperties) {
     }
 
     return (

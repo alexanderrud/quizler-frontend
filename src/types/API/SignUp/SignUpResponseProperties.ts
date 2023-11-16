@@ -1,4 +1,4 @@
-export type RegisterResponseProperties = {
+export type SignUpResponseProperties = {
     responseData: string,
     status: number
 }
