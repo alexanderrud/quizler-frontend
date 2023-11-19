@@ -1,15 +1,15 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useContext, useState} from 'react';
 import AuthInput from "../UI/input/AuthInput";
 import DefaultButton from "../UI/button/DefaultButton";
 import {signInUser} from '../../api/authApi';
-
-import {SignUpResponseProperties} from "../../types/API/SignUp/SignUpResponseProperties";
 import {AuthFormProps} from "../../types/Form/AuthFormProps";
+import {useAuth} from "../auth/AuthContext";
 
 const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
+    const {setIsAuth} = useAuth();
 
     async function singIn(e: React.FormEvent): Promise<void> {
         e.preventDefault();
@@ -25,18 +25,15 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
     }
 
     function handleSuccessSignIn(token: string) {
-
+        setIsAuth(true);
     }
 
     function signUp(e: React.FormEvent) {
     }
 
-    function handleSignUpResponse(response: SignUpResponseProperties) {
-    }
-
     return (
-        <div className="flex justify-center items-center h-screen">
-            <div className="w-1/4 h-96">
+        <div className="flex justify-center items-center relative top-40">
+            <div className="w-1/4">
                 <form onSubmit={(e: React.FormEvent) => isRegister ? signUp(e) : singIn(e)}
                       className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4">

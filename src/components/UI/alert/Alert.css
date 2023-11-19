@@ -1,0 +1,29 @@
+@keyframes appearIn {
+    from {
+        transform: translateX(100px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes disappear {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.alert-block-appearing {
+    animation-name: appearIn;
+    animation-duration: 0.7s;
+}
+
+.alert-block-disappearing {
+    animation-name: disappear;
+    animation-duration: 0.7s;
+}
