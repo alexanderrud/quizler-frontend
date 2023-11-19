@@ -1,14 +1,16 @@
-import React, {ChangeEvent, useContext, useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import AuthInput from "../UI/input/AuthInput";
 import DefaultButton from "../UI/button/DefaultButton";
 import {signInUser} from '../../api/authApi';
 import {AuthFormProps} from "../../types/Form/AuthFormProps";
 import {useAuth} from "../auth/AuthContext";
+import {useNavigate} from 'react-router-dom';
 
 const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
+    const navigate = useNavigate();
     const {setIsAuth} = useAuth();
 
     async function singIn(e: React.FormEvent): Promise<void> {
@@ -18,14 +20,16 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
         const token = responseData.token;
 
         if (token !== null && token !== '') {
-            return handleSuccessSignIn(responseData.token);
+            handleSuccessSignIn();
         }
 
         return;
     }
 
-    function handleSuccessSignIn(token: string) {
+    function handleSuccessSignIn() {
         setIsAuth(true);
+
+        return navigate("/");
     }
 
     function signUp(e: React.FormEvent) {

@@ -1,6 +1,5 @@
 import axios from "axios";
 
-import {SignUpRequestProperties} from "../types/API/SignUp/SignUpRequestProperties";
 import {SignInRequestProperties} from "../types/API/SignIn/SignInRequestProperties";
 import {SignInResponseProperties} from "../types/API/SignIn/SignInResponseProperties";
 
@@ -18,5 +17,12 @@ export const signInUser = async (properties: SignInRequestProperties): Promise<S
     }
 }
 
-export const registerUser = async (properties: SignUpRequestProperties) => {
+export const logoutUser = async () => {
+    try {
+        return await axios.get(BASE_URL + '/api/logout');
+    } catch (error) {
+        console.error('Error while logging out the user:', error);
+
+        throw error;
+    }
 }
