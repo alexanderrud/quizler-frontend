@@ -32,13 +32,10 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
         return navigate("/");
     }
 
-    function signUp(e: React.FormEvent) {
-    }
-
     return (
         <div className="flex justify-center items-center relative top-40">
             <div className="w-1/4">
-                <form onSubmit={(e: React.FormEvent) => isRegister ? signUp(e) : singIn(e)}
+                <form onSubmit={(e: React.FormEvent) => isRegister ? null : singIn(e)}
                       className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4">
                         <AuthInput
