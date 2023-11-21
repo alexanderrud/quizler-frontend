@@ -5,6 +5,8 @@ import {signInUser} from '../../api/authApi';
 import {AuthFormProps} from "../../types/Form/AuthFormProps";
 import {useAuth} from "../auth/AuthContext";
 import {useNavigate} from 'react-router-dom';
+import {useAlert} from "../UI/alert/AlertContext";
+import {AlertStatuses} from "../../constants/AlertStatuses";
 
 const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
     const [username, setUsername] = useState("");
@@ -12,6 +14,7 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
     const [repeatPassword, setRepeatPassword] = useState("");
     const navigate = useNavigate();
     const {setIsAuth} = useAuth();
+    const {setIsShown, setAlertMessage, setAlertType} = useAlert();
 
     async function singIn(e: React.FormEvent): Promise<void> {
         e.preventDefault();
@@ -20,14 +23,20 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
         const token = responseData.token;
 
         if (token !== null && token !== '') {
-            handleSuccessSignIn();
+            handleSuccessSignIn(token);
         }
 
         return;
     }
 
-    function handleSuccessSignIn() {
+    function handleSuccessSignIn(token: string) {
+        localStorage.setItem('auth-token', token);
+        localStorage.setItem('alertShown', 'yes');
+
         setIsAuth(true);
+        setIsShown(true);
+        setAlertMessage("You're logged in!");
+        setAlertType(AlertStatuses.SUCCESS);
 
         return navigate("/");
     }

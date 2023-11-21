@@ -19,7 +19,7 @@ export const signInUser = async (properties: SignInRequestProperties): Promise<S
 
 export const logoutUser = async () => {
     try {
-        return await axios.get(BASE_URL + '/api/logout');
+        return await axios.get(BASE_URL + '/logout');
     } catch (error) {
         console.error('Error while logging out the user:', error);
 

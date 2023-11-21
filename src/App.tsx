@@ -1,10 +1,14 @@
 import './App.css';
 import AppRouter from "./routes/AppRouter";
+import React from "react";
+import {AlertProvider} from "./components/UI/alert/AlertContext";
 
 function App() {
     return (
         <div className="App">
-            <AppRouter/>
+            <AlertProvider>
+                <AppRouter/>
+            </AlertProvider>
         </div>
     );
 }

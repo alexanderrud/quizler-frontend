@@ -1,12 +1,12 @@
 import Alert from "../UI/alert/Alert";
-import {useAuth} from "../auth/AuthContext";
+import {useAlert} from "../UI/alert/AlertContext";
 
 const Home = () => {
-    const {isAuth} = useAuth();
+    const {isShown} = useAlert();
 
     return (
         <div>
-            {isAuth ? <Alert alertType="success" message="you're logged in!"/> : ''}
+            {isShown ? <Alert/> : ''}
         </div>
     );
 };

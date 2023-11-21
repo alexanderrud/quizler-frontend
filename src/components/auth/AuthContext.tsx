@@ -5,7 +5,9 @@ import {AuthProviderProps} from "../../types/Auth/AuthProviderProps";
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider: React.FunctionComponent<AuthProviderProps> = ({children}) => {
-    const [isAuth, setIsAuth] = useState(false);
+    const [isAuth, setIsAuth] = useState(() => {
+        return localStorage.getItem('auth-token') !== null;
+    });
 
     const contextValue: AuthContextProps = {
         isAuth,

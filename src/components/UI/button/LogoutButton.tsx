@@ -9,8 +9,10 @@ const LogoutButton = () => {
 
     const logout = () => {
         logoutUser().then(() => {
+            localStorage.removeItem('auth-token');
             setIsAuth(false);
-            navigate('/');
+
+            return navigate('/');
         })
     }
 
