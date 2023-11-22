@@ -19,11 +19,15 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
     async function singIn(e: React.FormEvent): Promise<void> {
         e.preventDefault();
 
-        const responseData = await signInUser({username, password});
-        const token = responseData.token;
+        try {
+            const responseData = await signInUser({username, password});
+            const token = responseData.token;
 
-        if (token !== null && token !== '') {
-            handleSuccessSignIn(token);
+            if (token !== null && token !== '') {
+                handleSuccessSignIn(token);
+            }
+        } catch (error) {
+            handleFailedSignIn();
         }
 
         return;
@@ -39,6 +43,12 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
         setAlertType(AlertStatuses.SUCCESS);
 
         return navigate("/");
+    }
+
+    function handleFailedSignIn() {
+        setIsShown(true);
+        setAlertMessage("Error occurred! Please try again!");
+        setAlertType(AlertStatuses.ERROR);
     }
 
     return (

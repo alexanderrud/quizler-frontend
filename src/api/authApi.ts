@@ -11,8 +11,6 @@ export const signInUser = async (properties: SignInRequestProperties): Promise<S
 
         return response.data;
     } catch (error) {
-        console.error('Error logging user:', error);
-
         throw error;
     }
 }
