@@ -1,7 +1,7 @@
 import '../Form.css';
 import React, {ChangeEvent} from 'react';
 import {signInUser} from "../../../api/authApi";
-import {useGetAuthForm} from "../../../hooks/useGetAuthForm";
+import {useAuthForm} from "../../../hooks/useAuthForm";
 import {AlertStatuses} from "../../../constants/AlertStatuses";
 import {useAlert} from "../../UI/alert/AlertContext";
 import {useAuth} from "../../auth/AuthContext";
@@ -10,7 +10,7 @@ import AuthInput from "../../UI/input/AuthInput";
 import DefaultButton from "../../UI/button/DefaultButton";
 
 const SignInForm = () => {
-    const {handleUsername, username, handlePassword, password} = useGetAuthForm();
+    const {handleUsername, username, handlePassword, password} = useAuthForm();
     const {setIsShown, setAlertMessage, setAlertType} = useAlert();
     const {setIsAuth} = useAuth();
     const navigate = useNavigate();
