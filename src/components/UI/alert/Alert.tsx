@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Alert.css';
 import {useAlert} from "./AlertContext";
 import CloseButton from "../button/CloseButton";
@@ -21,6 +21,10 @@ const Alert = () => {
         warning: <IconBxWarning/>,
         error: <IconBxError/>
     };
+
+    useEffect(() => {
+        setTimeout(() => closeAlert(), 3000);
+    });
 
     const closeAlert = () => {
         setAlertAction("alert-block-disappearing");
