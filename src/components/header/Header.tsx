@@ -14,26 +14,19 @@ const Header = () => {
                         <span className="text-xl font-bold">Quizler</span>
                     </Link>
                 </div>
-                <div className="hidden lg:flex lg:flex-1 justify-end">
-                    {isAuth ? (
-                        <div className="logout">
-                            <LogoutButton/>
-                        </div>
-                    ) : (
-                        <>
-                            <div className="register pr-5">
-                                <Link to="register" className="quizler-link">
-                                    <span>Register</span>
-                                    <span className="quizler-link__selected bg-blue-400"></span>
-                                </Link>
-                            </div>
+                <div>
+                    {!isAuth ? (
+                        <div className="flex justify-end">
                             <div className="login">
                                 <Link to="login" className="quizler-link">
                                     <span>Log in</span>
                                     <span className="quizler-link__selected bg-yellow-400"></span>
                                 </Link>
                             </div>
-                        </>
+                        </div>) : (
+                        <div className="flex justify-end logout lg-flex">
+                            <LogoutButton/>
+                        </div>
                     )}
                 </div>
             </nav>

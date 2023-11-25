@@ -29,7 +29,7 @@ const LogoutButton = () => {
                 <span className="quizler-link__selected bg-yellow-400"></span>
             </button>
         </div>
-    );
+    )
 };
 
 export default LogoutButton;

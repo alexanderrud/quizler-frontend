@@ -1,20 +1,19 @@
-import React, {ChangeEvent, useState} from 'react';
-import AuthInput from "../UI/input/AuthInput";
-import DefaultButton from "../UI/button/DefaultButton";
-import {signInUser} from '../../api/authApi';
-import {AuthFormProps} from "../../types/Form/AuthFormProps";
-import {useAuth} from "../auth/AuthContext";
-import {useNavigate} from 'react-router-dom';
-import {useAlert} from "../UI/alert/AlertContext";
-import {AlertStatuses} from "../../constants/AlertStatuses";
+import '../Form.css';
+import React, {ChangeEvent} from 'react';
+import {signInUser} from "../../../api/authApi";
+import {useGetAuthForm} from "../../../hooks/useGetAuthForm";
+import {AlertStatuses} from "../../../constants/AlertStatuses";
+import {useAlert} from "../../UI/alert/AlertContext";
+import {useAuth} from "../../auth/AuthContext";
+import {useNavigate} from "react-router-dom";
+import AuthInput from "../../UI/input/AuthInput";
+import DefaultButton from "../../UI/button/DefaultButton";
 
-const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [repeatPassword, setRepeatPassword] = useState("");
-    const navigate = useNavigate();
-    const {setIsAuth} = useAuth();
+const SignInForm = () => {
+    const {handleUsername, username, handlePassword, password} = useGetAuthForm();
     const {setIsShown, setAlertMessage, setAlertType} = useAlert();
+    const {setIsAuth} = useAuth();
+    const navigate = useNavigate();
 
     async function singIn(e: React.FormEvent): Promise<void> {
         e.preventDefault();
@@ -54,7 +53,7 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
     return (
         <div className="flex justify-center items-center relative top-40">
             <div className="w-1/4">
-                <form onSubmit={(e: React.FormEvent) => isRegister ? null : singIn(e)}
+                <form onSubmit={(e: React.FormEvent) => singIn(e)}
                       className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4">
                         <AuthInput
@@ -62,7 +61,7 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
                             type="text"
                             name="Username"
                             value={username}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => handleUsername(e.target.value)}
                         />
                     </div>
 
@@ -72,24 +71,12 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
                             type="password"
                             name="Password"
                             value={password}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => handlePassword(e.target.value)}
                         />
                     </div>
 
-                    {isRegister ?
-                        <div className="mb-4">
-                            <AuthInput
-                                id="repeat-password"
-                                type="password"
-                                name="Repeat Password"
-                                value={repeatPassword}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => setRepeatPassword(e.target.value)}
-                            />
-                        </div> : ''
-                    }
-
                     <div>
-                        <DefaultButton text={isRegister ? 'Sign Up' : 'Sign In'} type="submit"/>
+                        <DefaultButton text='Sign In' type="submit"/>
                     </div>
                 </form>
             </div>
@@ -97,4 +84,4 @@ const AuthForm: React.FunctionComponent<AuthFormProps> = ({isRegister}) => {
     );
 };
 
-export default AuthForm;
+export default SignInForm;
