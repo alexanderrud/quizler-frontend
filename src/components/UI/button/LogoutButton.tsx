@@ -15,7 +15,7 @@ const LogoutButton = () => {
 
             setIsAuth(false);
             setAlertType('info');
-            setAlertMessage('You was logged out');
+            setAlertMessage('You were logged out');
             setIsShown(true);
 
             return navigate('/');
