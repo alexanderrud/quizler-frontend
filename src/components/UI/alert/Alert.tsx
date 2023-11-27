@@ -8,8 +8,8 @@ import IconBxWarning from "../icons/BxWarning";
 import IconBxError from "../icons/IconBxError";
 
 const Alert = () => {
-    const [alertAction, setAlertAction] = useState('alert-block-appearing');
-    const {setIsShown, alertMessage, alertType} = useAlert();
+    const {alertMessage, alertType, isShown, hideAlert} = useAlert();
+    const [animationAction, setAnimationAction] = useState('');
 
     interface IconTypes {
         [key: string]: React.JSX.Element
@@ -23,17 +23,24 @@ const Alert = () => {
     };
 
     useEffect(() => {
-        setTimeout(() => closeAlert(), 3000);
-    });
+        if (isShown) {
+            setTimeout(() => setAnimationAction('disappear'), 2000);
+
+            const timeoutID = setTimeout(() => {
+                hideAlert();
+            }, 2500);
+
+            return () => clearTimeout(timeoutID);
+        }
+    }, [isShown]);
 
     const closeAlert = () => {
-        setAlertAction("alert-block-disappearing");
-        setTimeout(() => setIsShown(false), 600);
+        setTimeout(() => hideAlert(), 600);
     }
 
     return (
         <div>
-            <div className={alertAction + " flex w-96 rounded-lg ml-auto pr-5 absolute right-0"}>
+            <div className={`alert-animation ${animationAction} flex w-96 rounded-lg ml-auto pr-5 absolute right-0`}>
                 <div className={alertType + "-card"}>
                     {typeIcons[alertType]}
                 </div>
@@ -44,6 +51,6 @@ const Alert = () => {
             </div>
         </div>
     );
-};
+}
 
 export default Alert;

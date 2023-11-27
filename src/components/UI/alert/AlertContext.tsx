@@ -10,11 +10,20 @@ export const AlertProvider: React.FunctionComponent<AlertProviderProps> = ({chil
     const [alertMessage, setAlertMessage] = useState('');
     const [alertType, setAlertType] = useState(AlertStatuses.SUCCESS);
 
+    const showAlert = () => {
+        setIsShown(true);
+    }
+
+    const hideAlert = () => {
+        setIsShown(false);
+    }
+
     const contextValue: AlertContextProps = {
         isShown,
         alertMessage,
         alertType,
-        setIsShown,
+        showAlert,
+        hideAlert,
         setAlertMessage,
         setAlertType
     }

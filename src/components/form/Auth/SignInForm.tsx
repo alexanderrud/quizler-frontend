@@ -11,7 +11,7 @@ import DefaultButton from "../../UI/button/DefaultButton";
 
 const SignInForm = () => {
     const {handleUsername, username, handlePassword, password} = useAuthForm();
-    const {setIsShown, setAlertMessage, setAlertType} = useAlert();
+    const {showAlert, setAlertMessage, setAlertType} = useAlert();
     const {setIsAuth} = useAuth();
     const navigate = useNavigate();
 
@@ -37,17 +37,17 @@ const SignInForm = () => {
         localStorage.setItem('alertShown', 'yes');
 
         setIsAuth(true);
-        setIsShown(true);
         setAlertMessage("You're logged in!");
         setAlertType(AlertStatuses.SUCCESS);
+        showAlert();
 
         return navigate("/");
     }
 
     function handleFailedSignIn() {
-        setIsShown(true);
         setAlertMessage("Error occurred! Please try again!");
         setAlertType(AlertStatuses.ERROR);
+        showAlert();
     }
 
     return (

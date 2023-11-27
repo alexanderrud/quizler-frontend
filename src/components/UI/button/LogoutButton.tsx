@@ -7,7 +7,7 @@ import {useAlert} from "../alert/AlertContext";
 const LogoutButton = () => {
     const navigate = useNavigate();
     const {setIsAuth} = useAuth();
-    const {setAlertMessage, setAlertType, setIsShown} = useAlert();
+    const {setAlertMessage, setAlertType, showAlert} = useAlert();
 
     const logout = () => {
         logoutUser().then(() => {
@@ -16,7 +16,7 @@ const LogoutButton = () => {
             setIsAuth(false);
             setAlertType('info');
             setAlertMessage('You were logged out');
-            setIsShown(true);
+            showAlert();
 
             return navigate('/');
         })

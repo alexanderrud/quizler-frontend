@@ -43,12 +43,13 @@
     }
 }
 
-.alert-block-appearing {
+.alert-animation {
     animation-name: appearIn;
     animation-duration: 0.7s;
 }
 
-.alert-block-disappearing {
+.alert-animation.disappear {
     animation-name: disappear;
     animation-duration: 0.7s;
+    pointer-events: none;
 }

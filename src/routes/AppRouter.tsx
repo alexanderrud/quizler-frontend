@@ -11,7 +11,7 @@ const AppRouter = () => {
     return (
         <BrowserRouter>
             <Header/>
-            {isShown ? <Alert/> : ''}
+            {isShown && (<Alert/>)}
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="login" element={<Login/>}/>
