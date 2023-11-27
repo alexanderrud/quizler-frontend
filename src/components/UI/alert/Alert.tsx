@@ -7,8 +7,8 @@ import Tick from "../icons/Tick";
 import IconBxWarning from "../icons/BxWarning";
 import IconBxError from "../icons/IconBxError";
 
-const Alert = () => {
-    const {alertMessage, alertType, isShown, hideAlert} = useAlert();
+const Alert: React.FunctionComponent<{ alertType: string, alertMessage: string }> = (props) => {
+    const {isShown, hideAlert} = useAlert();
     const [animationAction, setAnimationAction] = useState('');
 
     interface IconTypes {
@@ -24,29 +24,25 @@ const Alert = () => {
 
     useEffect(() => {
         if (isShown) {
-            setTimeout(() => setAnimationAction('disappear'), 2000);
+            const animationTimeout = setTimeout(() => setAnimationAction('disappear'), 2000);
+            const hideTimeout = setTimeout(() => hideAlert(), 2500);
 
-            const timeoutID = setTimeout(() => {
-                hideAlert();
-            }, 2500);
-
-            return () => clearTimeout(timeoutID);
+            return () => {
+                clearTimeout(animationTimeout);
+                clearTimeout(hideTimeout);
+            }
         }
     }, [isShown]);
-
-    const closeAlert = () => {
-        setTimeout(() => hideAlert(), 600);
-    }
 
     return (
         <div>
             <div className={`alert-animation ${animationAction} flex w-96 rounded-lg ml-auto pr-5 absolute right-0`}>
-                <div className={alertType + "-card"}>
-                    {typeIcons[alertType]}
+                <div className={props.alertType + "-card"}>
+                    {typeIcons[props.alertType]}
                 </div>
                 <div className="alert-text-area">
-                    {alertMessage}
-                    <CloseButton onClick={closeAlert}/>
+                    {props.alertMessage}
+                    <CloseButton onClick={hideAlert}/>
                 </div>
             </div>
         </div>

@@ -7,15 +7,15 @@ import {useAlert} from "../alert/AlertContext";
 const LogoutButton = () => {
     const navigate = useNavigate();
     const {setIsAuth} = useAuth();
-    const {setAlertMessage, setAlertType, showAlert} = useAlert();
+    const {showAlert, setShowLogoutAlert, setShowSignInAlert} = useAlert();
 
     const logout = () => {
         logoutUser().then(() => {
             localStorage.removeItem('auth-token');
 
             setIsAuth(false);
-            setAlertType('info');
-            setAlertMessage('You were logged out');
+            setShowLogoutAlert(true);
+            setShowSignInAlert(false);
             showAlert();
 
             return navigate('/');

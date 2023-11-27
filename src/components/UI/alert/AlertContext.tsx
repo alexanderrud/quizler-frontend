@@ -1,14 +1,13 @@
 import React, {createContext, useContext, useState} from 'react';
 import {AlertContextProps} from "../../../types/Alert/AlertContextProps";
 import {AlertProviderProps} from "../../../types/Alert/AlertProviderProps";
-import {AlertStatuses} from "../../../constants/AlertStatuses";
 
 const AlertContext = createContext<AlertContextProps | undefined>(undefined);
 
 export const AlertProvider: React.FunctionComponent<AlertProviderProps> = ({children}) => {
     const [isShown, setIsShown] = useState(false);
-    const [alertMessage, setAlertMessage] = useState('');
-    const [alertType, setAlertType] = useState(AlertStatuses.SUCCESS);
+    const [showSignInAlert, setShowSignInAlert] = useState(false);
+    const [showLogoutAlert, setShowLogoutAlert] = useState(false);
 
     const showAlert = () => {
         setIsShown(true);
@@ -20,12 +19,12 @@ export const AlertProvider: React.FunctionComponent<AlertProviderProps> = ({chil
 
     const contextValue: AlertContextProps = {
         isShown,
-        alertMessage,
-        alertType,
+        showSignInAlert,
+        showLogoutAlert,
+        setShowSignInAlert,
+        setShowLogoutAlert,
         showAlert,
         hideAlert,
-        setAlertMessage,
-        setAlertType
     }
 
     return (

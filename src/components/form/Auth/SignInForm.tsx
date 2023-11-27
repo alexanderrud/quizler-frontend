@@ -2,7 +2,6 @@ import '../Form.css';
 import React, {ChangeEvent} from 'react';
 import {signInUser} from "../../../api/authApi";
 import {useAuthForm} from "../../../hooks/useAuthForm";
-import {AlertStatuses} from "../../../constants/AlertStatuses";
 import {useAlert} from "../../UI/alert/AlertContext";
 import {useAuth} from "../../auth/AuthContext";
 import {useNavigate} from "react-router-dom";
@@ -11,7 +10,7 @@ import DefaultButton from "../../UI/button/DefaultButton";
 
 const SignInForm = () => {
     const {handleUsername, username, handlePassword, password} = useAuthForm();
-    const {showAlert, setAlertMessage, setAlertType} = useAlert();
+    const {showAlert, setShowSignInAlert, setShowLogoutAlert} = useAlert();
     const {setIsAuth} = useAuth();
     const navigate = useNavigate();
 
@@ -37,16 +36,14 @@ const SignInForm = () => {
         localStorage.setItem('alertShown', 'yes');
 
         setIsAuth(true);
-        setAlertMessage("You're logged in!");
-        setAlertType(AlertStatuses.SUCCESS);
+        setShowLogoutAlert(false);
+        setShowSignInAlert(true);
         showAlert();
 
         return navigate("/");
     }
 
     function handleFailedSignIn() {
-        setAlertMessage("Error occurred! Please try again!");
-        setAlertType(AlertStatuses.ERROR);
         showAlert();
     }
 

@@ -1,9 +1,9 @@
 export type AlertContextProps = {
     isShown: boolean,
-    alertMessage: string,
-    alertType: string,
+    showSignInAlert: boolean,
+    showLogoutAlert: boolean,
+    setShowSignInAlert: (showSignInAlert: boolean) => void,
+    setShowLogoutAlert: (showLogoutAlert: boolean) => void,
     showAlert: () => void,
     hideAlert: () => void,
-    setAlertMessage: (alertMessage: string) => void,
-    setAlertType: (alertType: string) => void
 }

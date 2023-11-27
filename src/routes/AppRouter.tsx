@@ -4,14 +4,20 @@ import Home from "../components/home/Home";
 import Header from "../components/header/Header";
 import Alert from "../components/UI/alert/Alert";
 import {useAlert} from "../components/UI/alert/AlertContext";
+import {AlertStatuses} from "../constants/AlertStatuses";
 
 const AppRouter = () => {
-    const {isShown} = useAlert();
+    const {isShown, showSignInAlert, showLogoutAlert} = useAlert();
 
     return (
         <BrowserRouter>
             <Header/>
-            {isShown && (<Alert/>)}
+            {isShown && showSignInAlert && (
+                <Alert alertMessage="You're logged in!" alertType={AlertStatuses.SUCCESS}/>
+            )}
+            {isShown && showLogoutAlert && (
+                <Alert alertMessage="You're logged out!" alertType={AlertStatuses.INFO}/>
+            )}
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="login" element={<Login/>}/>
