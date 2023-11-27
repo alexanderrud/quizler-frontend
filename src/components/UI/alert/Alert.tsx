@@ -8,7 +8,7 @@ import IconBxWarning from "../icons/BxWarning";
 import IconBxError from "../icons/IconBxError";
 
 const Alert: React.FunctionComponent<{ alertType: string, alertMessage: string }> = (props) => {
-    const {isShown, hideAlert} = useAlert();
+    const {alertIsShown, hideAlert} = useAlert();
     const [animationAction, setAnimationAction] = useState('');
 
     interface IconTypes {
@@ -23,7 +23,7 @@ const Alert: React.FunctionComponent<{ alertType: string, alertMessage: string }
     };
 
     useEffect(() => {
-        if (isShown) {
+        if (alertIsShown) {
             const animationTimeout = setTimeout(() => setAnimationAction('disappear'), 2000);
             const hideTimeout = setTimeout(() => hideAlert(), 2500);
 
@@ -32,7 +32,7 @@ const Alert: React.FunctionComponent<{ alertType: string, alertMessage: string }
                 clearTimeout(hideTimeout);
             }
         }
-    }, [isShown]);
+    }, [alertIsShown]);
 
     return (
         <div>

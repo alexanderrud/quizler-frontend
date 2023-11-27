@@ -7,15 +7,15 @@ import {useAlert} from "../components/UI/alert/AlertContext";
 import {AlertStatuses} from "../constants/AlertStatuses";
 
 const AppRouter = () => {
-    const {isShown, showSignInAlert, showLogoutAlert} = useAlert();
+    const {alertIsShown, showSignInAlert, showLogoutAlert} = useAlert();
 
     return (
         <BrowserRouter>
             <Header/>
-            {isShown && showSignInAlert && (
+            {alertIsShown && showSignInAlert && (
                 <Alert alertMessage="You're logged in!" alertType={AlertStatuses.SUCCESS}/>
             )}
-            {isShown && showLogoutAlert && (
+            {alertIsShown && showLogoutAlert && (
                 <Alert alertMessage="You're logged out!" alertType={AlertStatuses.INFO}/>
             )}
             <Routes>
