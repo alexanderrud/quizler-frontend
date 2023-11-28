@@ -1,0 +1,55 @@
+.card {
+    @apply py-4 px-6 rounded-l-lg flex items-center;
+}
+
+.success-card {
+    @apply bg-green-600 card;
+}
+
+.info-card {
+    @apply bg-blue-500 card;
+}
+
+.error-card {
+    @apply bg-red-600 card;
+}
+
+.alert-text-area {
+    @apply px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200;
+}
+
+.App-logo {
+    width: 40vmin;
+}
+
+/*animation*/
+@keyframes appearIn {
+    from {
+        transform: translateX(100px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes disappear {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.alert-animation {
+    animation-name: appearIn;
+    animation-duration: 0.7s;
+}
+
+.alert-animation.disappear {
+    animation-name: disappear;
+    animation-duration: 0.7s;
+    pointer-events: none;
+}
