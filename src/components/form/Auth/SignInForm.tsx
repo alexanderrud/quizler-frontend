@@ -7,6 +7,7 @@ import {useAuth} from "../../auth/AuthContext";
 import {useNavigate} from "react-router-dom";
 import AuthInput from "../../UI/input/AuthInput";
 import DefaultButton from "../../UI/button/DefaultButton";
+import {AlertStatuses} from "../../../constants/AlertStatuses";
 
 const SignInForm = () => {
     const {handleUsername, username, handlePassword, password} = useAuthForm();
@@ -14,37 +15,31 @@ const SignInForm = () => {
     const {setIsAuth} = useAuth();
     const navigate = useNavigate();
 
-    async function singIn(e: React.FormEvent): Promise<void> {
+    const singIn = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault();
 
-        try {
-            const responseData = await signInUser({username, password});
-            const token = responseData.token;
-
-            if (token !== null && token !== '') {
-                handleSuccessSignIn(token);
-            }
-        } catch (error) {
-            handleFailedSignIn();
-        }
-
-        return;
+        return signInUser({username, password}).then((response) => {
+            const token = response.data;
+            handleSuccessSignIn(token);
+        }).catch((error) => handleFailedSignIn(error.message));
     }
 
-    function handleSuccessSignIn(token: string) {
+    const handleSuccessSignIn = (token: string) => {
         localStorage.setItem('auth-token', token);
         localStorage.setItem('alertShown', 'yes');
 
         setIsAuth(true);
         setShowLogoutAlert(false);
         setShowSignInAlert(true);
-        showAlert();
+        showAlert("You're logged in!", AlertStatuses.SUCCESS);
 
         return navigate("/");
     }
 
-    function handleFailedSignIn() {
-        showAlert();
+    const handleFailedSignIn = (message: string) => {
+        showAlert(message, AlertStatuses.ERROR);
+
+        return navigate("/login");
     }
 
     return (

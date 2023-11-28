@@ -6,10 +6,14 @@ const AlertContext = createContext<AlertContextProps | undefined>(undefined);
 
 export const AlertProvider: React.FunctionComponent<AlertProviderProps> = ({children}) => {
     const [alertIsShown, setAlertIsShown] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
+    const [alertType, setAlertType] = useState('');
     const [showSignInAlert, setShowSignInAlert] = useState(false);
     const [showLogoutAlert, setShowLogoutAlert] = useState(false);
 
-    const showAlert = () => {
+    const showAlert = (alertMessage: string, alertType: string) => {
+        setAlertMessage(alertMessage);
+        setAlertType(alertType);
         setAlertIsShown(true);
     }
 
